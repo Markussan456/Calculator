@@ -14,13 +14,15 @@ function log(whatever){
     return console.log(whatever);
 }
 function operate(num1,num2,operator){
+    num1 = parseInt(num1,10);
+    num2 = parseInt(num2,10);
     switch(operator)
     {
         case'+':
         return add(num1,num2);
         case'-':
         return subtract(num1,num2);
-        case'*':
+        case'x':
         return multiply(num1,num2);
         case'/':
         return divide(num1,num2);
@@ -60,4 +62,21 @@ deletebtn.addEventListener("click",()=>{
     
 })
 let clearbtn = document.querySelector(".clearbtn");
-clearbtn.addEventListener("click",()=>{display.textContent = ""});
+clearbtn.addEventListener("click",()=>{display.textContent = ""; console.clear();});
+
+let calculatebtn = document.querySelector(".equalbtn");
+calculatebtn.addEventListener("click",()=>{
+    let displaycontent = display.textContent;
+    let arr = displaycontent.match(/\d+|[+\-x/]/g);
+    log(arr);
+    let sum = Number(arr[0]);
+    for(let i = 1; i <= arr.length -1;i+=2){
+        let operator = arr[i];
+        let nextNumber = arr[i+1];
+       
+         sum = operate(sum,nextNumber,operator);
+    }
+    
+    log(sum);
+})
+
