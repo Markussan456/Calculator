@@ -29,4 +29,11 @@ function operate(num1,num2,operator){
 
     }
 }
+let numbers = document.querySelector(".numbers");
 
+for(let i = 1 ;i <= 9;i++){
+let digits = document.createElement("button");
+digits.classList.add("digit");
+digits.textContent = i;
+numbers.appendChild(digits);
+}

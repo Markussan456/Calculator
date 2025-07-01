@@ -32,11 +32,67 @@ flex-grow: 1;
     flex-grow: 2;
     display: flex;
 }
-.numbers{
+.numcontainer{
+    display: flex;
+    flex-grow: 1;
     border: 1px solid black;
-    flex-grow: 2;
+    flex-direction: column;
+}
+.numbers{
+    border: 1px  blue;
+    
+    display: flex;
+flex-wrap: wrap;
+flex-grow: 3;
+}
+.bottomnumbers{
+    border: 1px  violet;
+    flex-grow: 1;
+    display: flex;
+
+}
+.bottomnumber{
+    flex-grow: 1;
 }
 .operators{
     border: 1px solid black;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.upperop{
+    flex-grow: 1;
+border: 1px solid brown;
+display: flex;
+flex-wrap: wrap;
+}
+.oppbutton{
+    width: 50%;
+    height: 50%;
+}
+.loweropp{
+    flex-grow: 1;
+border: 1px saddlebrown solid;
+display: flex;
+}
+.lowerupperopp{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.loweroppbtn{
+    flex-grow: 1;
+}
+.equal{
+    display: flex;
+    flex-grow: 1;
+}
+.equalbtn{
+    width: 100%;
+}
+.digit{
+  width: 33.3333333%;
+  height: 33.3333333%;
+
+
 }
