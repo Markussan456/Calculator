@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.container{
+    border: 2px solid violet;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calcframe{
+    border: 2px solid black;
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+}
+.display{
+flex-grow: 1;
+}
+.lowercalc{
+    flex-grow: 2;
+    display: flex;
+}
+.numbers{
+    border: 1px solid black;
+    flex-grow: 2;
+}
+.operators{
+    border: 1px solid black;
+    flex-grow: 1;
+}
