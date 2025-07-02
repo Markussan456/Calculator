@@ -69,6 +69,19 @@ calculatebtn.addEventListener("click",()=>{
     let displaycontent = display.textContent;
     let arr = displaycontent.match(/\d+|[+\-x/]/g);
     log(arr);
+       if (arr[0] === "-"){
+            arr[0]=arr[0] +arr[1];
+            arr.splice(1,1);
+        }
+    for(let i = 1;i <= arr.length;i++){
+     
+        if((arr[i] === "-" && arr[i+1]==="-")||(arr[i]==="+"&&arr[i+1]==="-")||(arr[i]==="x"&&arr[i+1]==="-")||(arr[i]==="/"&&arr[i+1]==="-"))
+        {
+           arr[i+1]= arr[i+1] +arr[i+2];
+           arr.splice(i+2,1);
+        }
+    }
+    log(arr);
     let sum = Number(arr[0]);
     for(let i = 1; i <= arr.length -1;i+=2){
         let operator = arr[i];
@@ -76,7 +89,7 @@ calculatebtn.addEventListener("click",()=>{
        
          sum = operate(sum,nextNumber,operator);
     }
-    
+    display.textContent = sum;
     log(sum);
 })
 
