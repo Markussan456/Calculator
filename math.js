@@ -14,8 +14,10 @@ function log(whatever){
     return console.log(whatever);
 }
 function operate(num1,num2,operator){
-    num1 = parseInt(num1,10);
-    num2 = parseInt(num2,10);
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    
+
     switch(operator)
     {
         case'+':
@@ -67,7 +69,7 @@ clearbtn.addEventListener("click",()=>{display.textContent = ""; console.clear()
 let calculatebtn = document.querySelector(".equalbtn");
 calculatebtn.addEventListener("click",()=>{
     let displaycontent = display.textContent;
-    let arr = displaycontent.match(/\d+|[+\-x/]/g);
+    let arr = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
     log(arr);
        if (arr[0] === "-"){
             arr[0]=arr[0] +arr[1];
@@ -83,13 +85,15 @@ calculatebtn.addEventListener("click",()=>{
     }
     log(arr);
     let sum = Number(arr[0]);
+    let rsum = 0;
     for(let i = 1; i <= arr.length -1;i+=2){
         let operator = arr[i];
         let nextNumber = arr[i+1];
        
          sum = operate(sum,nextNumber,operator);
+         rsum = +sum.toFixed(4);
     }
-    display.textContent = sum;
-    log(sum);
+    display.textContent = rsum;
+    log(rsum);
 })
 
