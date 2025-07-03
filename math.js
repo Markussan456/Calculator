@@ -51,6 +51,7 @@ buttons.forEach(button =>{
     button.addEventListener('click',()=>{
        
        const opps = ["+", "/", "x"];
+       const minus = ["-"];
          if(!(kopija===undefined)){
             
 display.textContent = "";
@@ -68,13 +69,42 @@ let arr = display.textContent.split("");
     display.textContent = newstr; 
         }
     }
+
+    if(arrays.length >=3){
+        let i = arrays.length -3;
+        if(opps.includes(arrays[i])&& (minus.includes(arrays[i+1])&&minus.includes(arrays[i+2]))){
+let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    }
     if(opps.includes(arrays[0])){
         let arr = display.textContent.split("");
  arr.pop();
     let newstr = arr.join("");
     display.textContent = newstr; 
     }
+  
+   if(arrays.length >=3){
+    let lastThree = arrays.slice(-3).join("");
+    if(lastThree === "---"){
+        arrays.pop();
+         display.textContent = arrays.join("");
+         return;
+    }
+   }
+      for(let i = 0;i<= arrays.length;i++){
+if ( arrays.length <= 2 && arrays[i] === "-" && arrays[i+1] ==="-"){
+let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+    }
+    }
     })
+  
+    
   
 })
 let deletebtn = document.querySelector(".delete");
