@@ -46,15 +46,22 @@ numbers.appendChild(digits);
 }
 let display = document.querySelector(".text");
 let buttons = document.querySelectorAll(".calcbtn");
+let kopija= undefined;
 buttons.forEach(button =>{
     button.addEventListener('click',()=>{
+       
        const opps = ["+", "/", "x"];
+         if(!(kopija===undefined)){
+            
+display.textContent = "";
+kopija = undefined;
+    }
         let btntext = button.textContent;
         display.textContent += btntext;
         let displaycontent = display.textContent;
     let arrays = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
     for(let i = arrays.length - 2;i <=arrays.length -1;i++){
-        if(opps.includes(arrays[i])&&opps.includes(arrays[i+1])){
+        if((opps.includes(arrays[i])&&opps.includes(arrays[i+1])||(arrays[i]==="-"&&opps.includes(arrays[i+1])))){
 let arr = display.textContent.split("");
     arr.pop();
     let newstr = arr.join("");
@@ -68,6 +75,7 @@ let arr = display.textContent.split("");
     display.textContent = newstr; 
     }
     })
+  
 })
 let deletebtn = document.querySelector(".delete");
 deletebtn.addEventListener("click",()=>{
@@ -109,7 +117,7 @@ calculatebtn.addEventListener("click",()=>{
     }
     for(let i = 1; i <= arr.length -1;i+=2){
         
-         if(!(arr[i]==="/"&& arr[i+1]==="0")&& !(arr[0]==="0"&&arr[1]==="/")){
+         if(!(arr[i]==="/"&& arr[i+1]==="0")&& !(arr[0]==="0"&&arr[1]==="/") ){
             let operator = arr[i];
         let nextNumber = arr[i+1];
        
@@ -117,10 +125,12 @@ calculatebtn.addEventListener("click",()=>{
          rsum = +sum.toFixed(4);
         }else{
             rsum = "Really?";
+            kopija = rsum;
         }
         
     }
     display.textContent = rsum;
+    kopija = rsum;
     log(rsum);
 })
 
