@@ -48,8 +48,25 @@ let display = document.querySelector(".text");
 let buttons = document.querySelectorAll(".calcbtn");
 buttons.forEach(button =>{
     button.addEventListener('click',()=>{
+       const opps = ["+", "/", "x"];
         let btntext = button.textContent;
         display.textContent += btntext;
+        let displaycontent = display.textContent;
+    let arrays = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
+    for(let i = arrays.length - 2;i <=arrays.length -1;i++){
+        if(opps.includes(arrays[i])&&opps.includes(arrays[i+1])){
+let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    }
+    if(opps.includes(arrays[0])){
+        let arr = display.textContent.split("");
+ arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+    }
     })
 })
 let deletebtn = document.querySelector(".delete");

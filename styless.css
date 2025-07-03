@@ -66,6 +66,21 @@ flex-grow: 3;
 border: 1px solid brown;
 display: flex;
 flex-wrap: wrap;
+flex-direction: column;
+}
+.upp{
+    flex-grow: 1;
+    display: flex;
+}
+.down{
+    display: flex;
+flex-grow: 2;
+}
+.timesdiv{
+     flex-grow: 1;
+}
+.delete{
+    flex-grow: 1;
 }
 .oppbutton{
     width: 50%;
