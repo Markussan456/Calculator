@@ -86,12 +86,22 @@ calculatebtn.addEventListener("click",()=>{
     log(arr);
     let sum = Number(arr[0]);
     let rsum = 0;
+    for(let i = 1;i<= arr.length -1;i++){
+       
+
+    }
     for(let i = 1; i <= arr.length -1;i+=2){
-        let operator = arr[i];
+        
+         if(!(arr[i]==="/"&& arr[i+1]==="0")&& !(arr[0]==="0"&&arr[1]==="/")){
+            let operator = arr[i];
         let nextNumber = arr[i+1];
        
          sum = operate(sum,nextNumber,operator);
          rsum = +sum.toFixed(4);
+        }else{
+            rsum = "Really?";
+        }
+        
     }
     display.textContent = rsum;
     log(rsum);
