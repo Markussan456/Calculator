@@ -60,8 +60,22 @@ display.textContent = "";
 kopija = undefined;
     }
         let btntext = button.textContent;
+        if (btntext === '.') {
+  let parts = display.textContent.split(/[\+\-x\/]/);
+  let currentNumber = parts[parts.length - 1];
+  if (currentNumber.includes('.')) {
+    // Already a decimal in this number, ignore this input
+    return;
+  }
+}
         display.textContent += btntext;
         let displaycontent = display.textContent;
+        if(displaycontent.startsWith(".")){
+            let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
     let arrays = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
     log(arrays);
     for(let i = 1;i < arrays.length-1;i++){
