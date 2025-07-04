@@ -39,6 +39,8 @@ for(let i = 1 ;i <= 9;i++){
 let digits = document.createElement("button");
 digits.classList.add("digit");
 digits.classList.add("calcbtn");
+digits.classList.add("everybtn");
+
 digits.textContent = i;
 numbers.appendChild(digits);
 
@@ -61,6 +63,15 @@ kopija = undefined;
         display.textContent += btntext;
         let displaycontent = display.textContent;
     let arrays = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
+    log(arrays);
+    for(let i = 1;i < arrays.length-1;i++){
+        if(arrays[i]==="."&&arrays[i+1]==="."){
+            let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    }
     for(let i = arrays.length - 2;i <=arrays.length -1;i++){
         if((opps.includes(arrays[i])&&opps.includes(arrays[i+1])||(arrays[i]==="-"&&opps.includes(arrays[i+1])))){
 let arr = display.textContent.split("");
