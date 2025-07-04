@@ -46,6 +46,7 @@ numbers.appendChild(digits);
 
 
 }
+
 let display = document.querySelector(".text");
 let buttons = document.querySelectorAll(".calcbtn");
 let kopija= undefined;
@@ -189,3 +190,149 @@ calculatebtn.addEventListener("click",()=>{
     log(rsum);
 })
 
+
+
+
+document.addEventListener("keydown",(event)=>{
+
+const allowedkeys = ["-","+","/","*","0","1","2","3","4","5","6","7","8","9","."];
+if(event.key === "c"){
+    display.textContent = ""; console.clear();
+}
+if(allowedkeys.includes(event.key))
+{
+
+       const opps = ["+", "/", "x",];
+       const minus = ["-"];
+         if(!(kopija===undefined)){
+            
+display.textContent = "";
+kopija = undefined;
+    }
+
+       let btntext = event.key;
+        if(event.key === "*"){
+   btntext = "x";
+};
+        if (btntext === '.') {
+  let parts = display.textContent.split(/[\+\-x\/]/);
+  let currentNumber = parts[parts.length - 1];
+  if (currentNumber.includes('.')) {
+    // Already a decimal in this number, ignore this input
+    return;
+  }
+}
+        display.textContent += btntext;
+        let displaycontent = display.textContent;
+        if(displaycontent.startsWith(".")){
+            let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    let arrays = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
+    log(arrays);
+    for(let i = 1;i < arrays.length-1;i++){
+        if(arrays[i]==="."&&arrays[i+1]==="."){
+            let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    }
+    for(let i = arrays.length - 2;i <=arrays.length -1;i++){
+        if((opps.includes(arrays[i])&&opps.includes(arrays[i+1])||(arrays[i]==="-"&&opps.includes(arrays[i+1])))){
+let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    }
+
+    if(arrays.length >=3){
+        let i = arrays.length -3;
+        if(opps.includes(arrays[i])&& (minus.includes(arrays[i+1])&&minus.includes(arrays[i+2]))){
+let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+        }
+    }
+    if(opps.includes(arrays[0])){
+        let arr = display.textContent.split("");
+ arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+    }
+  
+   if(arrays.length >=3){
+    let lastThree = arrays.slice(-3).join("");
+    if(lastThree === "---"){
+        arrays.pop();
+         display.textContent = arrays.join("");
+         return;
+    }
+   }
+      for(let i = 0;i<= arrays.length;i++){
+if ( arrays.length <= 2 && arrays[i] === "-" && arrays[i+1] ==="-"){
+let arr = display.textContent.split("");
+    arr.pop();
+    let newstr = arr.join("");
+    display.textContent = newstr; 
+    }
+    }
+}
+if(event.key === "Enter" || event.key === "="){
+     let displaycontent = display.textContent;
+    let arr = displaycontent.match(/\d+(\.\d+)?|[+\-x\/]/g);
+    log(arr);
+       if (arr[0] === "-"){
+            arr[0]=arr[0] +arr[1];
+            arr.splice(1,1);
+        }
+    for(let i = 1;i <= arr.length;i++){
+     
+        if((arr[i] === "-" && arr[i+1]==="-")||(arr[i]==="+"&&arr[i+1]==="-")||(arr[i]==="x"&&arr[i+1]==="-")||(arr[i]==="/"&&arr[i+1]==="-"))
+        {
+           arr[i+1]= arr[i+1] +arr[i+2];
+           arr.splice(i+2,1);
+        }
+    }
+    log(arr);
+    let sum = Number(arr[0]);
+    let rsum = 0;
+    for(let i = 1;i<= arr.length -1;i++){
+       
+
+    }
+    for(let i = 1; i <= arr.length -1;i+=2){
+        
+         if(!(arr[i]==="/"&& arr[i+1]==="0")&& !(arr[0]==="0"&&arr[1]==="/") ){
+            let operator = arr[i];
+        let nextNumber = arr[i+1];
+       
+         sum = operate(sum,nextNumber,operator);
+         rsum = +sum.toFixed(4);
+        }else{
+            rsum = "Really?";
+            kopija = rsum;
+        }
+        
+    }
+    display.textContent = rsum;
+    kopija = rsum;
+    log(rsum);
+}
+});
+document.addEventListener("keydown",(key)=>{
+    if (key.key === "Backspace"){
+
+    
+      let arr = display.textContent.split("");
+    log(arr);
+    arr.pop();
+    log(arr);
+    let newstr = arr.join("");
+    log(newstr);
+    display.textContent = newstr; }
+});
